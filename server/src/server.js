@@ -3,6 +3,7 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import path from "path";
+import {fileURLToPath} from 'url'
 
 import { connectDB } from "./config/db.js";
 import { errorMiddleware } from "./middlewares/error.middleware.js";
@@ -23,7 +24,9 @@ import commonFeatureRoute from "./routes/common/feature.route.js";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const __dirname = path.resolve();
+
+__filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename);
 
 // Middlewares
 app.use(
@@ -65,7 +68,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/dist")));
 
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../client", "dist", "index.html"));
+    res.sendFile(path.resolve(__dirname, "../client/dist/index.html"));
   });
 }
 
