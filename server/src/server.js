@@ -3,7 +3,7 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import path from "path";
-import {fileURLToPath} from 'url'
+import { fileURLToPath } from "url";
 
 import { connectDB } from "./config/db.js";
 import { errorMiddleware } from "./middlewares/error.middleware.js";
@@ -25,7 +25,7 @@ import commonFeatureRoute from "./routes/common/feature.route.js";
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-__filename = fileURLToPath(import.meta.url)
+const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Middlewares
